@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css?family=Orbitron');
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #CC535A;
+    color: white;
+    font-family: Orbitron;
+}
+
+#results {
+    background-color: #116899;
+    height: 80px;
+    padding: 10px;
+    border: 2px solid white;
+}
+
+#results p {
+    margin-top: 5px;
+    font-size: 20px;
+    float: right;
+}
+
+#values, #history {
+	width: 100%;
+	height: 30px;
+    font-weight: bolder;
+    float: right;
+    margin-right: 15px;
+}
+
+#history p {
+    color: gray;
+}
+
+#calculator {
+    margin-top: 130px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 350px;
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+#buttons {
+    padding: 8px;
+    padding-left: 15px;
+    position: absolute;
+    width: 350px;
+    border: 2px solid white;
+    background-color: #53A1CC;
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+#buttons button {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+    margin: 8px;
+    box-shadow: 0 5px #999;
+}
+
+#buttons button:active {
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+#buttons button:focus {
+	outline: 0;
+}
+
+#buttons #btn0 {
+    width: 140px;
+}
+
+#AC, #CE {
+	background-color: #BD3752;
+	color: white;
+	border: none;
+	box-shadow: 0 5px #731C2D !important;
+}
