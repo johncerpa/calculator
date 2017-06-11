@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    var max = 18;
+    var max = 22;
     var value = "";
     var count = 0;
     var history = "";
