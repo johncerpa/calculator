@@ -4,12 +4,18 @@ $(document).ready(function() {
     var historyMax = 25;
     var value = "";
     var history = "";
+    var equalUsed = false;
 
     $(".number").click(function() {
 
         if (value === "max digits") value = "0";
 
         if (value.match(/[-*/+%]/)) value = "";
+
+        if (equalUsed) {
+            equalUsed = false;
+            value = history = "";
+        }
 
         if (value === "0") value = history = "";
 
@@ -19,7 +25,6 @@ $(document).ready(function() {
         } else {
             value = "max digits";
             history = "0";
-            console.log(0);
         }
 
         $("#values").html("<p>" + value + "</p>");
@@ -34,6 +39,9 @@ $(document).ready(function() {
     });
 
     $(".operator").click(function() {
+
+        equalUsed = false;
+
         if (value.length < max && history.length < historyMax) {
             if (value.length > 0 && !history[history.length - 1].match(/[-*/+%]/)) {
                 history += $(this).val();
@@ -42,7 +50,6 @@ $(document).ready(function() {
         } else {
             value = "max digits";
             history = "0";
-            console.log(1);
         }
 
         $("#values").html("<p>" + value + "</p>");
@@ -52,19 +59,17 @@ $(document).ready(function() {
     $("#equal").click(function() {
 
         var result = eval(history);
-        console.log(history, result);
-        console.log((result + "").length, (history + "=" + result).length);
 
         if ((result + "").length < max && (history + "=" + result).length < historyMax) {
             $("#values").html("<p>" + result + "</p>");
             $("#history").html("<p>" + history + "=" + result + "</p>");
             history = result + "";
+            equalUsed = true;
         } else {
             value = "max digits";
             history = "0";
             $("#values").html("<p>" + value + "</p>");
             $("#history").html("<p>0</p>");
-            console.log(2);
         }
 
     });
