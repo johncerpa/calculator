@@ -5,7 +5,11 @@
 }
 
 body {
-    background-color: #CC535A;
+    background: #f857a6;
+    background: -webkit-linear-gradient(left, #ff5858, #f857a6);
+    background: -o-linear-gradient(left, #ff5858, #f857a6);
+    background: linear-gradient(to right, #ff5858, #f857a6);
+    min-height: 100vh;
     color: white;
     font-family: Orbitron;
 }
