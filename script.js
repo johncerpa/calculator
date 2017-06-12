@@ -2,8 +2,8 @@ $(document).ready(function() {
 
     var max = 17;
     var historyMax = 25;
-    var value = "";
-    var history = "";
+    var value = "0";
+    var history = "0";
     var equalUsed = false;
 
     $(".number").click(function() {
@@ -17,11 +17,15 @@ $(document).ready(function() {
             value = history = "";
         }
 
-        if (value === "0") value = history = "";
+        if (value == "0" && $(this).val() != "0" && $(this).val() != ".") {
+            value = history = "";
+        }
 
         if (value.length < max && history.length < historyMax) {
-            value += $(this).val();
-            history += $(this).val();
+            if (!($(this).val() === "." && value.match(/\./))) {
+                value += $(this).val();
+                history += $(this).val();
+            }
         } else {
             value = "max digits";
             history = "0";
@@ -37,6 +41,18 @@ $(document).ready(function() {
         $("#values").html("<p>" + value + "</p>");
         $("#history").html("<p>" + history + "</p>");
     });
+
+    /*$("#CE").click(function() {
+        if (value == "0") {
+            history = result = "0";
+        } else {
+            history = history.slice(0, history.length - value.length);
+            value = "0";
+        }
+        if (history.length === 0) history = "0";
+        $("#values").html("<p>" + value + "</p>");
+        $("#history").html("<p>" + history + "</p>");
+    });*/
 
     $(".operator").click(function() {
 
@@ -73,6 +89,5 @@ $(document).ready(function() {
         }
 
     });
-
 
 });
