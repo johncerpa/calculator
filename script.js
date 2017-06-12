@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
     var max = 17;
+    var historyMax = 25;
     var value = "";
     var history = "";
 
@@ -12,12 +13,13 @@ $(document).ready(function() {
 
         if (value === "0") value = history = "";
 
-        if (value.length < max && history.length < max) {
+        if (value.length < max && history.length < historyMax) {
             value += $(this).val();
             history += $(this).val();
         } else {
             value = "max digits";
             history = "0";
+            console.log(0);
         }
 
         $("#values").html("<p>" + value + "</p>");
@@ -32,19 +34,39 @@ $(document).ready(function() {
     });
 
     $(".operator").click(function() {
-
-        if (value.length > 0 && !history[history.length - 1].match(/[-*/+%]/)) {
-            history += $(this).val();
-            value = $(this).val();
-            $("#values").html("<p>" + value + "</p>");
-            $("#history").html("<p>" + history + "</p>");
+        if (value.length < max && history.length < historyMax) {
+            if (value.length > 0 && !history[history.length - 1].match(/[-*/+%]/)) {
+                history += $(this).val();
+                value = $(this).val();
+            }
+        } else {
+            value = "max digits";
+            history = "0";
+            console.log(1);
         }
+
+        $("#values").html("<p>" + value + "</p>");
+        $("#history").html("<p>" + history + "</p>");
     });
 
     $("#equal").click(function() {
+
         var result = eval(history);
-        $("#values").html("<p>" + result + "</p>");
-        $("#history").html("<p>" + history + "=" + result + "</p>");
+        console.log(history, result);
+        console.log((result + "").length, (history + "=" + result).length);
+
+        if ((result + "").length < max && (history + "=" + result).length < historyMax) {
+            $("#values").html("<p>" + result + "</p>");
+            $("#history").html("<p>" + history + "=" + result + "</p>");
+            history = result + "";
+        } else {
+            value = "max digits";
+            history = "0";
+            $("#values").html("<p>" + value + "</p>");
+            $("#history").html("<p>0</p>");
+            console.log(2);
+        }
+
     });
 
 
