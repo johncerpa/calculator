@@ -1,7 +1,6 @@
 $(document).ready(function() {
 
     var max = 17;
-    var count = 0;
     var value = "";
     var history = "";
 
@@ -13,14 +12,12 @@ $(document).ready(function() {
 
         if (value === "0") value = history = "";
 
-        if (count < max || !history.length === max) {
+        if (value.length < max && history.length < max) {
             value += $(this).val();
             history += $(this).val();
-            count++;
         } else {
             value = "max digits";
             history = "0";
-            count = 0;
         }
 
         $("#values").html("<p>" + value + "</p>");
@@ -30,14 +27,13 @@ $(document).ready(function() {
 
     $(".clear").click(function() {
         history = value = "0";
-        count = 0;
         $("#values").html("<p>" + value + "</p>");
         $("#history").html("<p>" + history + "</p>");
     });
 
     $(".operator").click(function() {
 
-        if (count > 0 && !history[history.length - 1].match(/[-*/+%]/)) {
+        if (value.length > 0 && !history[history.length - 1].match(/[-*/+%]/)) {
             history += $(this).val();
             value = $(this).val();
             $("#values").html("<p>" + value + "</p>");
